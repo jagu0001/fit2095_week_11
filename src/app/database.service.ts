@@ -11,6 +11,7 @@ export class DatabaseService {
   constructor(private http: HttpClient) {}
   result: any;
 
+  //actors
   getActors() {
     return this.http.get("/actors");
   }
@@ -28,5 +29,32 @@ export class DatabaseService {
   deleteActor(id) {
     let url = "/actors/" + id;
     return this.http.delete(url, httpOptions);
+  }
+
+  //movies
+  getMovies(){
+    return this.http.get("/movies");
+  }
+  getMovie(id: string){
+    let url = "/movies/" + id;
+    return this.http.get(url);
+  }
+  createMovie(data){
+    return this.http.post("/movies", data, httpOptions);
+  }
+  updateMovie(id, data){
+    let url = "/movies/" + id;
+    return this.http.put(url, data, httpOptions);
+  }
+  deleteMovie(id: string){
+    let url = "/movies/" + id;
+    return this.http.delete(url, httpOptions);  
+  }
+  addActorToMovie(movieID, actorID){
+    let data = {
+      id: actorID
+    }
+    let url = "/movies/" + movieID + "/actors";
+    return this.http.post(url, data, httpOptions);
   }
 }

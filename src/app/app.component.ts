@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Week11Ang';
+  section = 1;
+
+  changeSection(section: number){
+    this.section = section;
+  }
 }
